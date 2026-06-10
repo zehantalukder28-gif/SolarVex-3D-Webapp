@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Vex — Elite 3D Energy Infrastructure</title>
+  <meta name="description" content="Empowering homes and businesses with cutting-edge solar technology.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="page-transition-curtain" id="pageTransitionCurtain"></div>
+
+  <!-- DUAL-CURSOR BLOB -->
+  <div class="cursor-blob" id="cursorBlob"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-text" id="loaderText">SOLAR VEX</div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo hover-orange">
+        <svg viewBox="0 0 100 100">
+          <path d="M50 15 A35 35 0 0 1 85 50 A35 35 0 0 1 50 85 A35 35 0 0 1 15 50 A35 35 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+          <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="3"/>
+          <line x1="30" y1="35" x2="70" y2="35" stroke="currentColor" stroke-width="2"/>
+          <line x1="30" y1="65" x2="70" y2="65" stroke="currentColor" stroke-width="2"/>
+          <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="3"/>
+          <line x1="35" y1="30" x2="35" y2="70" stroke="currentColor" stroke-width="2"/>
+          <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
+          <path d="M50 5 A45 45 0 0 1 95 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+          <path d="M50 95 A45 45 0 0 1 5 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+        </svg>
+        Solar Vex
+      </a>
+      <span class="header-tagline">Premium Infrastructure</span>
+      <button class="menu-toggle hover-cyan magnetic" id="menuOpen">MENU</button>
+    </div>
+  </header>
+
+  <!-- PITCH-BLACK FULLSCREEN MENU OVERLAY -->
+  <nav class="fullscreen-menu" id="fullscreenMenu">
+    <button class="menu-close hover-orange" id="menuClose">close</button>
+    <div class="menu-grid">
+      <!-- Primary Nav -->
+      <div class="menu-nav">
+        <a href="index.html" class="menu-item active-link hover-cyan">Home</a>
+        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
+        <a href="products.html" class="menu-item hover-cyan">Products</a>
+        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
+        <a href="support.html" class="menu-item hover-cyan">Support</a>
+        <a href="about.html" class="menu-item hover-cyan">About Us</a>
+      </div>
+      <!-- Deep Content Sub-nav -->
+      <div class="menu-details">
+        <div class="menu-block">
+          <h4>Solutions</h4>
+          <a href="solutions.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/pv-system.jpg" alt="Residential"></div>
+            <span class="sub-text">Residential Energy<br>Integration</span>
+          </a>
+          <a href="solutions.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/solar-farm.jpg" alt="Commercial"></div>
+            <span class="sub-text">Commercial Scale<br>Microgrids</span>
+          </a>
+        </div>
+        <div class="menu-block">
+          <h4>Support & Community</h4>
+          <a href="support.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/smart-energy.jpg" alt="Diagnostic"></div>
+            <span class="sub-text">Real-Time System<br>Diagnostics</span>
+          </a>
+          <a href="community.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/hero-bg.jpg" alt="Forum"></div>
+            <span class="sub-text">Global Sustainability<br>Grants</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <canvas id="webgl-hero"></canvas>
+    <div class="hero-title-row">
+      <span class="hero-word" id="heroLeft">SOLAR</span>
+      <span class="hero-word" id="heroRight">ENERGY</span>
+    </div>
+    <div class="hero-metadata" id="heroBottom" style="align-items: flex-start; text-align: left; left: clamp(32px, 5vw, 80px); transform: none;">
+      <p class="hero-metadata-desc">
+        Empowering homes and businesses with cutting-edge solar technology. Our battery-ready solutions ensure you're prepared for tomorrow's energy needs. Driving global distributed energy solutions with innovation and sustainability.
+      </p>
+      <div class="hero-metadata-contact">
+        <a href="mailto:contato@solarvex.com" class="meta-link hover-orange">CONTATO@SOLARVEX.COM</a>
+        <span class="meta-data">US +1 555 123 4567</span>
+        <span class="meta-data">EU +44 20 1234 5678</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPACT INFO CAROUSEL ==================== -->
+  <section class="section-carousel">
+    <div class="carousel-container">
+      <!-- Removed mask overflow:hidden to ensure no text fade/cut-off glitches -->
+      <div class="carousel-content-mask">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active">
+          <div class="slide-number">180+</div>
+          <div class="slide-inner">
+            <div class="slide-left">
+              <div class="slide-label">Our Global Footprint</div>
+              <!-- Removed span-split target class to prevent unintended GSAP fade glitches -->
+              <p class="slide-desc">Countries with Solar Vex systems installed. Since our founding, we have become a global leader in distributed energy solutions.</p>
+            </div>
+            <div class="slide-right">
+              <img src="images/solar-farm.jpg" class="slide-img" alt="Global Footprint">
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <div class="slide-number">6M+</div>
+          <div class="slide-inner">
+            <div class="slide-left">
+              <div class="slide-label">Always Connected</div>
+              <p class="slide-desc">End users connected to our cloud platform, monitoring and optimizing their energy in real-time from anywhere in the world.</p>
+            </div>
+            <div class="slide-right">
+              <img src="images/smart-energy.jpg" class="slide-img" alt="Always Connected">
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <div class="slide-number">63+</div>
+          <div class="slide-inner">
+            <div class="slide-left">
+              <div class="slide-label">Built For Scale</div>
+              <p class="slide-desc">Representative sites worldwide. Our network of offices, warehouses, and service centers ensures local support everywhere.</p>
+            </div>
+            <div class="slide-right">
+              <img src="images/pv-system.jpg" class="slide-img" alt="Scale">
+            </div>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="carousel-slide">
+          <div class="slide-number">JOIN</div>
+          <div class="slide-inner">
+            <div class="slide-left">
+              <div class="slide-label">Our Mission</div>
+              <p class="slide-desc">We collaborate with installers, EPCs, and distributors worldwide, building long-term partnerships and high-impact energy solutions that shape a better future.</p>
+            </div>
+            <div class="slide-right">
+              <img src="images/pv_modules.png" class="slide-img" alt="Mission">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-nav">
+        <button class="carousel-btn hover-cyan magnetic" id="nextSlideBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAXIMIZED PRODUCT SHOWCASE ==================== -->
+  <section class="section-products" id="section-products">
+    <div class="showcase-header">
+      <h2 class="showcase-title">Technical<br>Showcase</h2>
+    </div>
+
+    <!-- STRICT 3D SOLAR PANEL CANVAS PLACEMENT (NOT BACKGROUND) -->
+    <div class="panel-kinetics-wrapper" id="panelWrapper">
+      <canvas id="webgl-panels"></canvas>
+    </div>
+
+    <!-- Filter Matrix -->
+    <div class="filter-nav" id="filterNav">
+      <button class="filter-btn active hover-cyan magnetic" data-filter="all">View All</button>
+      <button class="filter-btn hover-cyan magnetic" data-filter="pv">PV Systems</button>
+      <button class="filter-btn hover-cyan magnetic" data-filter="storage">Energy Storage</button>
+      <button class="filter-btn hover-cyan magnetic" data-filter="smart">Smart Inverters</button>
+    </div>
+
+    <!-- Empty dynamic grid to be populated by JS -->
+    <div class="showcase-grid" id="showcaseGrid"></div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 15 A35 35 0 0 1 85 50 A35 35 0 0 1 50 85 A35 35 0 0 1 15 50 A35 35 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+            <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="3"/>
+            <line x1="30" y1="35" x2="70" y2="35" stroke="currentColor" stroke-width="2"/>
+            <line x1="30" y1="65" x2="70" y2="65" stroke="currentColor" stroke-width="2"/>
+            <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="3"/>
+            <line x1="35" y1="30" x2="35" y2="70" stroke="currentColor" stroke-width="2"/>
+            <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
+            <path d="M50 5 A45 45 0 0 1 95 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+            <path d="M50 95 A45 45 0 0 1 5 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+          </svg>
+          Solar Vex
+        </div>
+        <p class="footer-tagline">Empowering homes and businesses with cutting-edge solar technology.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html" class="hover-cyan">About Us</a>
+        <a href="cases.html" class="hover-cyan">Media</a>
+        <a href="support.html" class="hover-cyan">Contact Us</a>
+        <a href="community.html" class="hover-cyan">Community</a>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="solutions.html" class="hover-orange">PV System</a>
+        <a href="solutions.html" class="hover-orange">Energy Storage</a>
+        <a href="solutions.html" class="hover-orange">EV Charger</a>
+        <a href="solutions.html" class="hover-orange">Smart Energy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="products.html" class="hover-cyan">PV Inverter</a>
+        <a href="products.html" class="hover-cyan">Energy Storage</a>
+        <a href="products.html" class="hover-cyan">EV Charger</a>
+        <a href="products.html" class="hover-cyan">Accessories</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="support.html" class="hover-orange">Training</a>
+        <a href="support.html" class="hover-orange">Warranty</a>
+        <a href="support.html" class="hover-orange">FAQ</a>
+        <a href="support.html" class="hover-orange">Downloads</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© Solar Vex New Energy — All Rights Reserved</span>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" class="hover-cyan"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://youtube.com" target="_blank" class="hover-orange"><i class="fab fa-youtube"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="hover-cyan"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com" target="_blank" class="hover-cyan"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-logo-large">SOLAR VEX</div>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ========================================
+       DUAL-CURSOR BLOB LOGIC
+       ======================================== */
+    const cursorBlob = document.getElementById('cursorBlob');
+    const xTo = gsap.quickTo(cursorBlob, "x", {duration: 0.3, ease: "power3"});
+    const yTo = gsap.quickTo(cursorBlob, "y", {duration: 0.3, ease: "power3"});
+    
+    document.addEventListener("mousemove", e => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
+    function attachCursorEvents() {
+      document.querySelectorAll('.hover-cyan').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorBlob.classList.add('focus-cyan'));
+        el.addEventListener('mouseleave', () => cursorBlob.classList.remove('focus-cyan'));
+      });
+      document.querySelectorAll('.hover-orange').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorBlob.classList.add('focus-orange'));
+        el.addEventListener('mouseleave', () => cursorBlob.classList.remove('focus-orange'));
+      });
+    }
+    attachCursorEvents();
+
+    /* ========================================
+       DATA-BINDING FILTER ENGINE
+       ======================================== */
+    const projectData = [
+      {
+        id: 'pv-modules',
+        category: 'pv',
+        span: 'span-8',
+        tag: 'Architecture',
+        title: 'Monocrystalline PV Modules',
+        img: 'images/pv_modules.png',
+        url: 'products.html',
+        color: 'hover-cyan',
+        metrics: [
+          { label: 'Efficiency', value: '23.4%' },
+          { label: 'Output', value: '450W+' },
+          { label: 'Warranty', value: '25 Years' }
+        ]
+      },
+      {
+        id: 'smart-inverter',
+        category: 'smart',
+        span: 'span-4',
+        tag: 'Conversion',
+        title: 'Smart Wave Inverters',
+        img: 'images/smart_inverter.png',
+        url: 'products.html',
+        color: 'hover-orange',
+        metrics: [
+          { label: 'Phase', value: '3-Phase' },
+          { label: 'Max THD', value: '<3%' }
+        ]
+      },
+      {
+        id: 'storage-cells',
+        category: 'storage',
+        span: 'span-6',
+        tag: 'Resilience',
+        title: 'High-Capacity Storage Cells',
+        img: 'images/storage_cells.png',
+        url: 'products.html',
+        color: 'hover-cyan',
+        metrics: [
+          { label: 'Chemistry', value: 'LiFePO4' },
+          { label: 'Capacity', value: '20kWh' }
+        ]
+      },
+      {
+        id: 'case-coastal',
+        category: 'pv',
+        span: 'span-6',
+        tag: 'Case Study',
+        title: 'Coastal Villa Integration',
+        img: 'images/pv-system.jpg',
+        url: 'cases.html',
+        color: 'hover-orange',
+        metrics: [
+          { label: 'Location', value: 'Malibu, CA' },
+          { label: 'Scale', value: '15kW' }
+        ]
+      },
+      {
+        id: 'case-urban',
+        category: 'storage',
+        span: 'span-12',
+        tag: 'Utility Scale',
+        title: 'Urban Grid Modernization',
+        img: 'images/solar-farm.jpg',
+        url: 'cases.html',
+        color: 'hover-cyan',
+        metrics: [
+          { label: 'Output', value: '2.5MW' },
+          { label: 'Status', value: 'Active' }
+        ]
+      }
+    ];
+
+    const showcaseGrid = document.getElementById('showcaseGrid');
+
+    function renderGrid(filter) {
+      showcaseGrid.innerHTML = ''; 
+      const filtered = filter === 'all' ? projectData : projectData.filter(d => d.category === filter);
+      
+      let html = '';
+      filtered.forEach(d => {
+        let metricsHtml = d.metrics.map(m => `<div class="metric"><span>${m.label}</span><strong>${m.value}</strong></div>`).join('');
+        html += `
+          <a href="${d.url}" class="product-card ${d.span} ${d.color}" data-id="${d.id}">
+            <div class="card-img-wrapper"><img src="${d.img}" alt="${d.title}"></div>
+            <div class="card-overlay">
+              <div class="card-tag">${d.tag}</div>
+              <h3 class="card-title">${d.title}</h3>
+              <div class="card-metrics">${metricsHtml}</div>
+            </div>
+          </a>
+        `;
+      });
+      
+      showcaseGrid.innerHTML = html;
+      attachCursorEvents(); 
+      initTiltCards();      
+
+      gsap.fromTo(showcaseGrid.querySelectorAll('.product-card'), 
+        { opacity: 0, y: 40, scale: 0.98 }, 
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }
+      );
+      ScrollTrigger.refresh();
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        gsap.to(showcaseGrid, { opacity: 0, duration: 0.3, onComplete: () => {
+          renderGrid(btn.getAttribute('data-filter'));
+          gsap.to(showcaseGrid, { opacity: 1, duration: 0.1 }); 
+        }});
+      });
+    });
+
+    renderGrid('all');
+
+
+    /* ========================================
+       ADVANCED PROJECT CARDS (3D TILT & TRANSLATE-Z)
+       ======================================== */
+    function initTiltCards() {
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5; 
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          gsap.to(card, {
+            rotateY: x * 15,
+            rotateX: -y * 15,
+            duration: 0.4,
+            ease: 'power3.out'
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 1,
+            ease: 'elastic.out(1, 0.4)'
+          });
+        });
+      });
+    }
+
+    /* ========================================
+       LOADER & STARTUP
+       ======================================== */
+    window.addEventListener('load', () => {
+      const lText = document.getElementById('loaderText');
+      lText.innerHTML = lText.textContent.split('').map(char => `<span>${char}</span>`).join('');
+      
+      const tlLoader = gsap.timeline();
+      tlLoader.to('#loaderText span', { y: -20, opacity: 0, stagger: 0.05, ease: "power2.in", delay: 0.5 })
+              .to('#loader', { opacity: 0, duration: 0.8, onComplete: () => document.getElementById('loader').classList.add('hidden') })
+              .add(() => {
+                gsap.fromTo('#heroLeft', 
+                  { x: 50, z: -800, opacity: 0, scale: 0.5 }, 
+                  { x: 0, z: 0, opacity: 1, scale: 1, duration: 2, ease: 'power4.out' }
+                );
+                gsap.fromTo('#heroRight', 
+                  { x: -50, z: -800, opacity: 0, scale: 0.5 }, 
+                  { x: 0, z: 0, opacity: 1, scale: 1, duration: 2, ease: 'power4.out' }
+                );
+                gsap.fromTo('#heroBottom',
+                  { y: 40, opacity: 0 },
+                  { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out', delay: 0.5 }
+                );
+              });
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const fullscreenMenu = document.getElementById('fullscreenMenu');
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    menuOpen.addEventListener('click', () => {
+      fullscreenMenu.classList.add('open');
+      gsap.fromTo(menuItems, 
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
+      );
+    });
+    menuClose.addEventListener('click', () => {
+      fullscreenMenu.classList.remove('open');
+    });
+
+    /* ========================================
+       INFO CAROUSEL (SPLIT LAYOUT WITHOUT TEXT BLENDING BUGS)
+       ======================================== */
+    const slides = document.querySelectorAll('.carousel-slide');
+    const nextBtn = document.getElementById('nextSlideBtn');
+    let currentSlide = 0;
+    
+    // Animate first image
+    gsap.fromTo(slides[0].querySelector('.slide-img'), { x: 100, opacity: 0, scale: 1.1 }, { x: 0, opacity: 1, scale: 1, duration: 1, ease: "power3.out", delay: 1.5 });
+
+    nextBtn.addEventListener('click', () => {
+      gsap.to(slides[currentSlide], { opacity: 0, duration: 0.5, onComplete: () => {
+        slides[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+        gsap.fromTo(slides[currentSlide], { opacity: 0 }, { opacity: 1, duration: 0.5 });
+        
+        // Image animation (Slide & Fade)
+        const slideImg = slides[currentSlide].querySelector('.slide-img');
+        gsap.fromTo(slideImg, { x: 100, opacity: 0, scale: 1.1 }, { x: 0, opacity: 1, scale: 1, duration: 1, ease: 'power3.out' });
+      }});
+    });
+
+
+    /* ========================================
+       THREE.JS: CENTRAL 3D SUN (Light Mode)
+       ======================================== */
+    const heroCanvas = document.getElementById('webgl-hero');
+    const hScene = new THREE.Scene();
+    const hCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    hCamera.position.z = 12;
+
+    const hRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+    hRenderer.setSize(window.innerWidth, window.innerHeight);
+    hRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const sunGeo = new THREE.SphereGeometry(3, 64, 64);
+    const sunMat = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      emissive: 0xff4400,
+      emissiveIntensity: 0.8,
+      wireframe: true
+    });
+    const sunMesh = new THREE.Mesh(sunGeo, sunMat);
+    hScene.add(sunMesh);
+
+    const canvasGlow = document.createElement('canvas');
+    canvasGlow.width = 256; canvasGlow.height = 256;
+    const ctx = canvasGlow.getContext('2d');
+    const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grad.addColorStop(0, 'rgba(255, 100, 0, 0.6)');
+    grad.addColorStop(1, 'rgba(255, 100, 0, 0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,256,256);
+    
+    const glowMat = new THREE.SpriteMaterial({ 
+      map: new THREE.CanvasTexture(canvasGlow), 
+      color: 0xffffff, transparent: true, blending: THREE.NormalBlending 
+    });
+    const glowSprite = new THREE.Sprite(glowMat);
+    glowSprite.scale.set(16, 16, 1);
+    hScene.add(glowSprite);
+
+    gsap.to(sunMat, { emissiveIntensity: 2.0, duration: 4, yoyo: true, repeat: -1, ease: "sine.inOut" });
+    gsap.to(sunMesh.scale, { x: 1.05, y: 1.05, z: 1.05, duration: 4, yoyo: true, repeat: -1, ease: "sine.inOut" });
+    gsap.to(glowSprite.scale, { x: 20, y: 20, duration: 4, yoyo: true, repeat: -1, ease: "sine.inOut" });
+
+    const clock = new THREE.Clock();
+    function renderHero() {
+      const t = clock.getElapsedTime();
+      sunMesh.rotation.y = t * 0.1;
+      sunMesh.rotation.x = t * 0.05;
+      hRenderer.render(hScene, hCamera);
+      requestAnimationFrame(renderHero);
+    }
+    renderHero();
+
+    gsap.to('#heroLeft', { x: -200, z: 200, opacity: 0, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+    gsap.to('#heroRight', { x: 200, z: 200, opacity: 0, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+
+
+    /* ========================================
+       THREE.JS: SOLAR PANEL KINETICS & COLLISIONS 
+       (Standalone layout buffer before Showcase Grid)
+       ======================================== */
+    const pCanvas = document.getElementById('webgl-panels');
+    const pScene = new THREE.Scene();
+    const pCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    pCamera.position.set(0, 5, 20);
+    pCamera.lookAt(0, 0, 0);
+
+    const pRenderer = new THREE.WebGLRenderer({ canvas: pCanvas, alpha: true, antialias: true });
+    const panelWrapper = document.getElementById('panelWrapper');
+    pRenderer.setSize(panelWrapper.offsetWidth, panelWrapper.offsetHeight);
+    pRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const panelsGroup = new THREE.Group();
+    pScene.add(panelsGroup);
+
+    const panelGeo = new THREE.PlaneGeometry(3, 5);
+    const panelMat = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.15, metalness: 0.9, side: THREE.DoubleSide });
+    
+    for(let i = -2; i <= 2; i++) {
+      const panel = new THREE.Mesh(panelGeo, panelMat);
+      panel.position.set(i * 4, 0, 0);
+      panel.rotation.x = -Math.PI / 3; 
+      panelsGroup.add(panel);
+    }
+
+    const pAmbient = new THREE.AmbientLight(0xffffff, 0.8);
+    pScene.add(pAmbient);
+    const pDirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    pDirLight.position.set(5, 10, 5);
+    pScene.add(pDirLight);
+
+    const pcCount = 1500;
+    const pcGeo = new THREE.BufferGeometry();
+    const pcArr = new Float32Array(pcCount * 3);
+    const pcVel = new Float32Array(pcCount); 
+
+    for(let i=0; i < pcCount; i++) {
+      const panelIndex = Math.floor(Math.random() * 5) - 2;
+      const localX = (Math.random() - 0.5) * 2.8; 
+      
+      pcArr[i*3] = panelIndex * 4 + localX; 
+      pcArr[i*3+1] = (Math.random() - 0.5) * 5; 
+      pcArr[i*3+2] = 0.05 + Math.random() * 0.1; 
+      pcVel[i] = 0.01 + Math.random() * 0.03;
+    }
+    pcGeo.setAttribute('position', new THREE.BufferAttribute(pcArr, 3));
+    
+    const pcMat = new THREE.PointsMaterial({ size: 0.05, color: 0x00d0ff, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending });
+    const pcMesh = new THREE.Points(pcGeo, pcMat);
+    // Add particles directly to the panels group so they track 1:1 with the 3D tilt
+    panelsGroup.add(pcMesh);
+
+    let mouseX = 0; let mouseY = 0;
+    panelWrapper.addEventListener('mousemove', (e) => {
+      const rect = panelWrapper.getBoundingClientRect();
+      mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    });
+    panelWrapper.addEventListener('mouseleave', () => {
+      mouseX = 0; mouseY = 0;
+    });
+
+    // Dynamic Hover Reactions from Filter Nav
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        const filter = btn.getAttribute('data-filter');
+        if (filter === 'pv') gsap.to(pcMat.color, { r: 0.0, g: 0.8, b: 1.0, duration: 0.5 });
+        if (filter === 'storage') gsap.to(pcMat.color, { r: 0.2, g: 1.0, b: 0.4, duration: 0.5 });
+        if (filter === 'smart') gsap.to(pcMat.color, { r: 1.0, g: 0.5, b: 0.0, duration: 0.5 });
+        if (filter === 'all') gsap.to(pcMat.color, { r: 0.0, g: 0.8, b: 1.0, duration: 0.5 });
+        
+        gsap.to(panelsGroup.rotation, { z: (Math.random() - 0.5) * 0.3, duration: 1, ease: 'power2.out' });
+      });
+    });
+
+    let currentSpeed = 0;
+    ScrollTrigger.create({
+      trigger: '#panelWrapper', start: 'top bottom', end: 'bottom top',
+      onUpdate: (self) => { currentSpeed = Math.abs(self.getVelocity() / 1000); }
+    });
+
+    function renderPanels() {
+      panelsGroup.rotation.y += (mouseX * 0.4 - panelsGroup.rotation.y) * 0.05;
+      panelsGroup.rotation.x += (-mouseY * 0.15 - panelsGroup.rotation.x) * 0.05;
+
+      const pos = pcGeo.attributes.position.array;
+      const speedMultiplier = 1 + currentSpeed * 2; 
+
+      for(let i=0; i < pcCount; i++) {
+        pos[i*3+1] -= pcVel[i] * speedMultiplier; 
+
+        if(pos[i*3+1] < -2.5) {
+          pos[i*3+1] = 2.5;
+          const panelIndex = Math.floor(Math.random() * 5) - 2;
+          pos[i*3] = panelIndex * 4 + (Math.random() - 0.5) * 2.8;
+        }
+      }
+      pcGeo.attributes.position.needsUpdate = true;
+      currentSpeed *= 0.95; 
+
+      pRenderer.render(pScene, pCamera);
+      requestAnimationFrame(renderPanels);
+    }
+    renderPanels();
+
+    window.addEventListener('resize', () => {
+      hCamera.aspect = window.innerWidth / window.innerHeight; hCamera.updateProjectionMatrix();
+      hRenderer.setSize(window.innerWidth, window.innerHeight);
+      
+      pCamera.aspect = panelWrapper.offsetWidth / panelWrapper.offsetHeight; pCamera.updateProjectionMatrix();
+      pRenderer.setSize(panelWrapper.offsetWidth, panelWrapper.offsetHeight);
+    });
+
+    /* ========================================
+       LENIS SMOOTH SCROLLING
+       ======================================== */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time)=>{ lenis.raf(time * 1000) });
+    gsap.ticker.lagSmoothing(0);
+
+    /* ========================================
+       MAGNETIC UI BUTTONS
+       ======================================== */
+    const magnets = document.querySelectorAll('.magnetic');
+    magnets.forEach(magnet => {
+      magnet.addEventListener('mousemove', function(e) {
+        const position = magnet.getBoundingClientRect();
+        const x = e.clientX - position.left - position.width / 2;
+        const y = e.clientY - position.top - position.height / 2;
+        
+        gsap.to(magnet, { x: x * 0.3, y: y * 0.3, duration: 0.5, ease: 'power2.out' });
+      });
+      magnet.addEventListener('mouseleave', function() {
+        gsap.to(magnet, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.3)' });
+      });
+    });
+
+    /* ========================================
+       GSAP PAGE TRANSITIONS (CURTAIN EFFECT)
+       ======================================== */
+    const transitionCurtain = document.getElementById('pageTransitionCurtain');
+    
+    // Animate curtain up on page load (inbound)
+    gsap.to(transitionCurtain, { y: '-100%', duration: 1.2, ease: 'power4.inOut', onComplete: () => {
+      gsap.set(transitionCurtain, { y: '100%' }); // Reset position for outbound
+    }});
+
+    // Intercept internal links for outbound transition
+    document.querySelectorAll('a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if(target && target.endsWith('.html') && !this.hasAttribute('target')) {
+          e.preventDefault();
+          gsap.to(transitionCurtain, { y: '0%', duration: 0.8, ease: 'power3.inOut', onComplete: () => {
+            window.location.href = target;
+          }});
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
