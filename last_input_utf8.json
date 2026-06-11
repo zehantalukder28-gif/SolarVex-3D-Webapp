@@ -1,0 +1,42 @@
+﻿
+{"step_index":622,"source":"USER_EXPLICIT","type":"USER_INPUT","status":"DONE","created_at":"2026-06-11T13:11:02Z","con
+tent":"<USER_REQUEST>\nYou are an expert Creative Frontend Engineer, WebGL Developer, and Technical Director 
+specializing in elite, immersive 3D web spaces. We are overhauling the static HTML/CSS landing page for \"Solar Vex\" 
+into a premium, micro-interactive, ultra-premium digital application using HTML, CSS, GSAP, and Three.js via 
+CDN.\n\nSTRICT VISUAL RULE: The background color of the main landing platform MUST remain a premium pale/off-white 
+tone (e.g., #F5F4F0 or #F2F0EA). Main body text must be sharp, dark charcoal/black for maximum editorial contrast. The 
+full-screen navigation menu overlay remains a striking high-contrast pitch-black with white menu categories that glow 
+on hover.\n\n---\n\n### 1. TWO-STEP INTERACTIVE POPUP & NAVIGATIONAL LOOP (CRITICAL UX REPAIR)\n- **The Problem:** 
+Currently, clicking an item card or grid project dumps the user directly out of the page or just shows a blanket look 
+at all items together. There are no individual pages or deep technical details.\n- **The Fix (The 2-Click Sequence):** 
+Re-engineer the click interaction on all product and project cards into a distinct, stateful two-step flow:\n  1. 
+**Click 1 (The Quick-View Popup):** When the user clicks a card for the first time, intercept the navigation. Open an 
+elegant, glassmorphic interactive modal popup. This popup must display a crisp high-res preview image, quick 
+performance metrics, and a prominent action button labeled \"Explore Full Specifications\" or \"View Deep Case 
+Analysis\".\n  2. **Click 2 (Deep Navigation):** Clicking that action button inside the popup (or clicking the 
+original card a second time while active) must smoothly trigger a full page-to-page curtain transition and route the 
+user directly to a dedicated, individual sub-page for *that specific asset*.\n\n---\n\n### 2. INDIVIDUAL DEEP-DETAIL 
+ROUTING (PRODUCTS, SOLUTIONS, CASES)\n- **The Problem:** Clicking an option just loads a massive, general section 
+showing all products mixed together with no unique deep-dives. \n- **The Solution:** Build a robust, dynamic routing 
+and templa\n<truncated 5777 bytes>\n corporate email (CONTATO@SOLARVEX.COM), and primary international phone 
+channels.\n\n---\n\n### 7. ADVANCED PROJECT SECTION CARDS\n- **3D Interactive Tilt:** Apply true 3D interactive 
+rotation (`rotateX` and `rotateY`) tracking the cursor over all project and product preview cards (including the 
+modern villa \"PV SYSTEM\" visual asset).\n- **Parallax Element Separation:** Isolate the typography elements on top 
+of the cards using CSS `transform: translateZ(60px)`. As a card tilts under mouse tracking, the text must visually 
+float above the shifting background scenery.\n- **Staggered Entry:** Implement an elegant staggered mask-reveal 
+animation via GSAP when the project section scrolls into the viewport.\n\n---\n\n### 8. DUAL-CURSOR IMPLEMENTATION 
+(SYSTEM CURSOR + BLOB)\n- **The Behavior:** Do NOT hide the default system mouse pointer. The standard desktop arrow 
+cursor must remain fully visible and active at all times.\n- **The Glow Blob:** Render a large, soft, blurred cyan 
+gradient light-blob div *underneath* the default pointer (`pointer-events: none; mix-blend-mode: multiply;`).\n- **The 
+Logic:** Use GSAP `quickTo` or `quickSetter` to track mouse movements smoothly at 60fps. When hovering buttons or 
+interactive image elements, the trailing blob must elegantly snap to the item boundary, swell in size, and slightly 
+intensify its hue.\n\n---\n\n### 9. SYSTEM BRANDING & ASSETS\n- **Logo and Favicon:** Render a crisp, minimalist 
+vector SVG logo for \"Solar Vex\" combining clean solar tracking vectors with a geometric sun crest. Place it 
+uniformly in the Header and Footer layouts, and deploy it as the browser tab 
+favicon.\n</USER_REQUEST>\n<ADDITIONAL_METADATA>\nThe current local time is: 
+2026-06-11T19:11:02+06:00.\n</ADDITIONAL_METADATA>\n<USER_SETTINGS_CHANGE>\nThe user changed setting `Model Selection` 
+from Gemini 3.5 Flash (Medium) to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask 
+about it. If reporting what model you are, please use a human readable name instead of the exact 
+string.\n</USER_SETTINGS_CHANGE>"}
+
+

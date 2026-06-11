@@ -114,6 +114,215 @@ pages = {
     </div>
   </section>
 """
+    },
+    "product-modules.html": {
+        "title": "Monocrystalline PV Modules — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/pv_modules.png" alt="Monocrystalline PV Modules">
+    </div>
+    <div class="product-detail-content">
+      <h1>Monocrystalline PV Modules</h1>
+      <div class="product-detail-price">$6,500 - $8,200</div>
+      <p class="product-detail-desc">Ultra-dense solar cell configurations utilizing advanced multi-busbar technology to achieve an industry-leading 23.4% module efficiency. Built with premium anti-reflective tempered glass to sustain optimal energy conversion across low-light environments.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Efficiency Tolerance</span>
+          <span class="spec-value">23.4%</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Architecture</span>
+          <span class="spec-value">Multi-Busbar</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Baseline System Output</span>
+          <span class="spec-value">450W+ per panel</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ id: 'pv-modules', name: 'Monocrystalline PV Modules', price: 6500, img: 'images/pv_modules.png' })">Add to System Order</button>
+    </div>
+  </section>
+"""
+    },
+    "product-inverter.html": {
+        "title": "Smart Wave Inverters — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/smart_inverter.png" alt="Smart Wave Inverters">
+    </div>
+    <div class="product-detail-content">
+      <h1>Smart Wave Inverters</h1>
+      <div class="product-detail-price">$2,400 - $3,100</div>
+      <p class="product-detail-desc">Next-generation digital power conversion systems featuring real-time artificial intelligence diagnostics. Continuously monitors multi-channel phase vectors, handles rapid thermal dissipation, and balances grid interaction with sub-millisecond precision.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Phase Vectors</span>
+          <span class="spec-value">Multi-channel 3-Phase</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Cooling System</span>
+          <span class="spec-value">AI Thermal Dissipation</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Grid Interaction</span>
+          <span class="spec-value">Sub-millisecond Switch</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ id: 'smart-inverter', name: 'Smart Wave Inverters', price: 2400, img: 'images/smart_inverter.png' })">Add to System Order</button>
+    </div>
+  </section>
+"""
+    },
+    "product-storage.html": {
+        "title": "High-Capacity Storage Cells — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/storage_cells.png" alt="High-Capacity Storage Cells">
+    </div>
+    <div class="product-detail-content">
+      <h1>High-Capacity Storage Cells</h1>
+      <div class="product-detail-price">$5,800 - $7,500</div>
+      <p class="product-detail-desc">Scalable lithium-iron-phosphate (LiFePO4) battery architectures offering an extensive 6,000-cycle lifespan. Features active liquid cooling management, modular expansion capabilities, and seamless integration with existing hybrid inverter topologies.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Chemistry</span>
+          <span class="spec-value">LiFePO4</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Lifespan</span>
+          <span class="spec-value">6,000 Cycles</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Thermal Management</span>
+          <span class="spec-value">Active Liquid Cooling</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ id: 'storage-cells', name: 'High-Capacity Storage Cells', price: 5800, img: 'images/storage_cells.png' })">Add to System Order</button>
+    </div>
+  </section>
+"""
+    },
+    "checkout.html": {
+        "title": "Checkout — Solar Vex",
+        "content": """
+  <section class="checkout-container">
+    <h1>System Checkout</h1>
+    <div class="checkout-box">
+      <form onsubmit="event.preventDefault(); alert('Order Placed Successfully! This is a demo gateway.'); localStorage.removeItem('solarVexCart'); window.location.href='index.html';">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label>Shipping Address</label>
+          <input type="text" required placeholder="Enter your shipping address">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" required placeholder="Enter your email address">
+        </div>
+        
+        <div class="checkout-summary">
+          <div class="checkout-summary-row">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">$0.00</span>
+          </div>
+          <div class="checkout-summary-row">
+            <span>Estimated Shipping</span>
+            <span>$150.00</span>
+          </div>
+          <div class="checkout-summary-row" style="font-size: 24px; margin-top: 24px; border-top: 2px solid rgba(0,0,0,0.1); padding-top: 24px;">
+            <span>Total</span>
+            <span id="checkoutTotal">$0.00</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="checkout-submit">Confirm System Order</button>
+      </form>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let cart = JSON.parse(localStorage.getItem('solarVexCart')) || [];
+      let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('checkoutSubtotal').innerText = `$${total.toLocaleString()}`;
+      document.getElementById('checkoutTotal').innerText = `$${(total + 150).toLocaleString()}`;
+    });
+  </script>
+"""
+    },
+    "case-coastal.html": {
+        "title": "Coastal Villa Integration — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/pv-system.jpg" alt="Coastal Villa Integration">
+    </div>
+    <div class="product-detail-content">
+      <h1>Coastal Villa Integration</h1>
+      <div class="product-detail-price">Case Study</div>
+      <p class="product-detail-desc">A flagship integration of our premium residential suite. Situated in Malibu, CA, this 15kW installation leverages highly salt-resistant Monocrystalline arrays alongside a dual 20kWh storage bank. The project achieved a 98% grid-independence rating within its first operational quarter, entirely offsetting the estate's heavy HVAC loads.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Location</span>
+          <span class="spec-value">Malibu, CA</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Scale</span>
+          <span class="spec-value">15kW</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Grid Independence</span>
+          <span class="spec-value">98%</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ id: 'pv-modules', name: 'Monocrystalline PV Modules (Coastal Bundle)', price: 19500, img: 'images/pv_modules.png' })">Add Coastal Configuration to Order</button>
+    </div>
+  </section>
+"""
+    },
+    "case-urban.html": {
+        "title": "Urban Grid Modernization — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/solar-farm.jpg" alt="Urban Grid Modernization">
+    </div>
+    <div class="product-detail-content">
+      <h1>Urban Grid Modernization</h1>
+      <div class="product-detail-price">Utility Scale</div>
+      <p class="product-detail-desc">A 2.5MW commercial deployment designed to stabilize a heavily strained industrial sector. This project bypassed traditional utility upgrades by deploying localized heavy-industry transformation enclosures and algorithmic peak-shaving frameworks, resolving capacity constraints and reducing enterprise overhead by 34%.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Output</span>
+          <span class="spec-value">2.5MW</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Status</span>
+          <span class="spec-value">Active</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Overhead Reduction</span>
+          <span class="spec-value">34%</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ id: 'smart-inverter', name: 'Smart Wave Inverters (Commercial Block)', price: 42000, img: 'images/smart_inverter.png' })">Inquire About Utility Scale Solutions</button>
+    </div>
+  </section>
+"""
     }
 }
 
@@ -141,23 +350,52 @@ template = """<!DOCTYPE html>
   <header class="header" id="header" style="background: rgba(245, 244, 240, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0, 0, 0, 0.05);">
     <div class="header-inner">
       <a href="index.html" class="logo hover-orange">
-        <svg viewBox="0 0 100 100">
-          <path d="M50 15 A35 35 0 0 1 85 50 A35 35 0 0 1 50 85 A35 35 0 0 1 15 50 A35 35 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-width="4"/>
-          <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="3"/>
-          <line x1="30" y1="35" x2="70" y2="35" stroke="currentColor" stroke-width="2"/>
-          <line x1="30" y1="65" x2="70" y2="65" stroke="currentColor" stroke-width="2"/>
-          <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="3"/>
-          <line x1="35" y1="30" x2="35" y2="70" stroke="currentColor" stroke-width="2"/>
-          <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
-          <path d="M50 5 A45 45 0 0 1 95 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
-          <path d="M50 95 A45 45 0 0 1 5 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+        <svg viewBox="0 0 100 100" class="brand-logo">
+          <!-- Geometric Sun Crest -->
+          <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="3"/>
+          <path d="M50 15 L50 5 M85 50 L95 50 M50 85 L50 95 M15 50 L5 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M75 25 L82 18 M75 75 L82 82 M25 75 L18 82 M25 25 L18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <!-- Solar Tracking Vectors inside the sun -->
+          <rect x="35" y="40" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
+          <line x1="50" y1="40" x2="50" y2="60" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
+          <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
         </svg>
         Solar Vex
       </a>
       <span class="header-tagline">Premium Infrastructure</span>
-      <button class="menu-toggle hover-cyan magnetic" id="menuOpen">MENU</button>
+      <div class="header-actions">
+        <a href="index.html#section-products" class="explore-btn magnetic">Explore Solutions &rarr;</a>
+        <button class="icon-btn hover-cyan magnetic" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button class="icon-btn hover-cyan magnetic" aria-label="Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+        <button class="icon-btn hover-cyan magnetic" aria-label="User Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+        <div class="cart-icon-wrapper">
+          <button class="icon-btn hover-cyan magnetic" id="cartOpenBtn" aria-label="Cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </button>
+          <div class="cart-badge" id="cartBadge">0</div>
+        </div>
+        <button class="menu-toggle hover-cyan magnetic" id="menuOpen">MENU</button>
+      </div>
     </div>
   </header>
+
+  <!-- ==================== PREMIUM SEARCH OVERLAY ==================== -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close hover-orange" id="searchClose">CLOSE</button>
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products, solutions..." autocomplete="off">
+        <span class="search-line"></span>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
 
   <!-- FULLSCREEN MENU OVERLAY -->
   <nav class="fullscreen-menu" id="fullscreenMenu">
@@ -200,6 +438,25 @@ template = """<!DOCTYPE html>
     </div>
   </nav>
 
+  <!-- CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>System Order</h2>
+      <button class="cart-close hover-orange" id="cartCloseBtn">CLOSE</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty-msg">Your system configuration is empty.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0</span>
+      </div>
+      <a href="checkout.html" class="cart-checkout-btn">Proceed to Gateway</a>
+    </div>
+  </div>
+
   {content}
 
   <!-- FOOTER -->
@@ -207,16 +464,15 @@ template = """<!DOCTYPE html>
     <div class="footer-top">
       <div>
         <div class="footer-brand">
-          <svg viewBox="0 0 100 100">
-            <path d="M50 15 A35 35 0 0 1 85 50 A35 35 0 0 1 50 85 A35 35 0 0 1 15 50 A35 35 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-width="4"/>
-            <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-width="3"/>
-            <line x1="30" y1="35" x2="70" y2="35" stroke="currentColor" stroke-width="2"/>
-            <line x1="30" y1="65" x2="70" y2="65" stroke="currentColor" stroke-width="2"/>
-            <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="3"/>
-            <line x1="35" y1="30" x2="35" y2="70" stroke="currentColor" stroke-width="2"/>
-            <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
-            <path d="M50 5 A45 45 0 0 1 95 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
-            <path d="M50 95 A45 45 0 0 1 5 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="8 4"/>
+          <svg viewBox="0 0 100 100" class="brand-logo">
+            <!-- Geometric Sun Crest -->
+            <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M50 15 L50 5 M85 50 L95 50 M50 85 L50 95 M15 50 L5 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M75 25 L82 18 M75 75 L82 82 M25 75 L18 82 M25 25 L18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <!-- Solar Tracking Vectors inside the sun -->
+            <rect x="35" y="40" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
+            <line x1="50" y1="40" x2="50" y2="60" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
+            <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
           </svg>
           Solar Vex
         </div>
@@ -301,6 +557,76 @@ template = """<!DOCTYPE html>
     });
 
     /* ========================================
+       DATA-BINDING FOR SEARCH
+       ======================================== */
+    const projectData = [
+      { id: 'pv-modules', tag: 'Architecture', title: 'Monocrystalline PV Modules', img: 'images/pv_modules.png', url: 'product-modules.html' },
+      { id: 'smart-inverter', tag: 'Conversion', title: 'Smart Wave Inverters', img: 'images/smart_inverter.png', url: 'product-inverter.html' },
+      { id: 'storage-cells', tag: 'Resilience', title: 'High-Capacity Storage Cells', img: 'images/storage_cells.png', url: 'product-storage.html' },
+      { id: 'case-coastal', tag: 'Case Study', title: 'Coastal Villa Integration', img: 'images/pv-system.jpg', url: 'case-coastal.html' },
+      { id: 'case-urban', tag: 'Utility Scale', title: 'Urban Grid Modernization', img: 'images/solar-farm.jpg', url: 'case-urban.html' }
+    ];
+
+    /* SEARCH LOGIC */
+    const searchBtn = document.getElementById('searchBtn');
+    const searchClose = document.getElementById('searchClose');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    if(searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        searchOverlay.classList.add('open');
+        setTimeout(() => searchInput.focus(), 100);
+        gsap.fromTo(searchOverlay.querySelector('.search-container'), 
+          { y: 30, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }
+        );
+      });
+    }
+
+    if(searchClose) {
+      searchClose.addEventListener('click', () => {
+        searchOverlay.classList.remove('open');
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchOverlay) {
+        searchOverlay.classList.remove('open');
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+      }
+    });
+
+    if(searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        if (!q) {
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        const matched = projectData.filter(item => 
+          item.title.toLowerCase().includes(q) || 
+          item.tag.toLowerCase().includes(q)
+        );
+
+        searchResults.innerHTML = matched.map(item => `
+          <a href="${item.url}" class="search-result-item">
+            <img class="search-result-img" src="${item.img}" alt="${item.title}">
+            <div class="search-result-info">
+              <span class="search-result-tag">${item.tag}</span>
+              <span class="search-result-title">${item.title}</span>
+            </div>
+          </a>
+        `).join('');
+      });
+    }
+
+    /* ========================================
        LENIS SMOOTH SCROLLING
        ======================================== */
     const lenis = new Lenis({
@@ -349,21 +675,140 @@ template = """<!DOCTYPE html>
     
     // Animate curtain up on page load (inbound)
     gsap.to(transitionCurtain, { y: '-100%', duration: 1.2, ease: 'power4.inOut', onComplete: () => {
-      gsap.set(transitionCurtain, { y: '100%' }); // Reset position for outbound
+      gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
+      transitionCurtain.style.pointerEvents = 'none';
     }});
+
+    // BACK NAVIGATION FALLBACK (BFCache Restore Fix)
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            transitionCurtain.style.pointerEvents = 'none';
+            gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
+        }
+    });
+    window.addEventListener('popstate', function(event) {
+        if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+            window.location.reload();
+        }
+        transitionCurtain.style.pointerEvents = 'none';
+        gsap.set(transitionCurtain, { y: '100%' });
+    });
 
     // Intercept internal links for outbound transition
     document.querySelectorAll('a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
-        if(target && target.endsWith('.html') && !this.hasAttribute('target')) {
+        if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card')) {
           e.preventDefault();
+          transitionCurtain.style.pointerEvents = 'auto';
           gsap.to(transitionCurtain, { y: '0%', duration: 0.8, ease: 'power3.inOut', onComplete: () => {
             window.location.href = target;
           }});
         }
       });
     });
+
+    /* ========================================
+       E-COMMERCE CART LOGIC
+       ======================================== */
+    const cartBadge = document.getElementById('cartBadge');
+    const cartBody = document.getElementById('cartBody');
+    const cartSubtotal = document.getElementById('cartSubtotal');
+    
+    document.getElementById('cartOpenBtn').addEventListener('click', () => {
+      document.getElementById('cartOverlay').classList.add('open');
+      document.getElementById('cartDrawer').classList.add('open');
+      renderCart();
+    });
+    
+    document.getElementById('cartCloseBtn').addEventListener('click', () => {
+      document.getElementById('cartOverlay').classList.remove('open');
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+    document.getElementById('cartOverlay').addEventListener('click', () => {
+      document.getElementById('cartOverlay').classList.remove('open');
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem('solarVexCart')) || [];
+    }
+    
+    function saveCart(cart) {
+      localStorage.setItem('solarVexCart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateCartBadge() {
+      const cart = getCart();
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (count > 0) {
+        cartBadge.innerText = count;
+        cartBadge.classList.add('visible');
+      } else {
+        cartBadge.classList.remove('visible');
+      }
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      if (cart.length === 0) {
+        cartBody.innerHTML = '<div class="cart-empty-msg">Your system configuration is empty.</div>';
+        cartSubtotal.innerText = '$0';
+        return;
+      }
+      
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        html += `
+          <div class="cart-item">
+            <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+            <div class="cart-item-details">
+              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-price">$${item.price.toLocaleString()}</div>
+              <div class="cart-item-qty">
+                <button onclick="updateCartQty(${index}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateCartQty(${index}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      cartBody.innerHTML = html;
+      cartSubtotal.innerText = '$' + total.toLocaleString();
+    }
+
+    window.updateCartQty = function(index, delta) {
+      const cart = getCart();
+      if (cart[index]) {
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        saveCart(cart);
+      }
+    };
+
+    window.addToCart = function(product) {
+      const cart = getCart();
+      const existing = cart.find(item => item.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        product.quantity = 1;
+        cart.push(product);
+      }
+      saveCart(cart);
+      
+      document.getElementById('cartOverlay').classList.add('open');
+      document.getElementById('cartDrawer').classList.add('open');
+    };
+    
+    updateCartBadge();
   </script>
 </body>
 </html>
