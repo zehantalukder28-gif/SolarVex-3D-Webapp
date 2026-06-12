@@ -1013,4 +1013,59 @@ body.page-exiting > *:not(.page-transition-curtain):not(.cursor-blob):not(.noise
 .checkout-submit { display: block; width: 100%; padding: 24px; background: var(--text); color: #fff; text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border-radius: 60px; margin-top: 40px; }
 .checkout-submit:hover { background: var(--cyan); }
 
+@media (max-width: 768px) {
+  .header-tagline,
+  .explore-btn,
+  .icon-btn[aria-label="Language"],
+  .icon-btn[aria-label="User Account"] {
+    display: none !important;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .menu-toggle,
+  #menuOpen {
+    display: flex !important;
+  }
+
+  .cart-icon-wrapper,
+  #searchBtn {
+    display: flex !important;
+  }
+
+  .fullscreen-menu .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullscreen-menu .menu-details {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* FLUID TYPOGRAPHY FOR THE HERO HEADING */
+  .hero-title-row, .hero-word {
+    font-size: clamp(2.5rem, 12vw, 4.5rem) !important;
+    line-height: 1.1;
+    word-spacing: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+  }
+
+  /* CONTAINER PADDING ADJUSTMENTS */
+  .hero-metadata {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  
+  .hero-metadata-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+
 
