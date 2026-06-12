@@ -142,7 +142,10 @@ pages = {
         </div>
       </div>
       
-      <button class="add-to-cart-btn" onclick="addToCart({ id: 'pv-modules', name: 'Monocrystalline PV Modules', price: 6500, img: 'images/pv_modules.png' })">Add to System Order</button>
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Monocrystalline PV Modules', price: 6500, type: 'Product', img: 'images/pv_modules.png' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
     </div>
   </section>
 """
@@ -174,7 +177,10 @@ pages = {
         </div>
       </div>
       
-      <button class="add-to-cart-btn" onclick="addToCart({ id: 'smart-inverter', name: 'Smart Wave Inverters', price: 2400, img: 'images/smart_inverter.png' })">Add to System Order</button>
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Smart Wave Inverters', price: 2400, type: 'Product', img: 'images/smart_inverter.png' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
     </div>
   </section>
 """
@@ -206,7 +212,10 @@ pages = {
         </div>
       </div>
       
-      <button class="add-to-cart-btn" onclick="addToCart({ id: 'storage-cells', name: 'High-Capacity Storage Cells', price: 5800, img: 'images/storage_cells.png' })">Add to System Order</button>
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'High-Capacity Storage Cells', price: 5800, type: 'Product', img: 'images/storage_cells.png' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
     </div>
   </section>
 """
@@ -261,65 +270,141 @@ pages = {
 """
     },
     "case-coastal.html": {
-        "title": "Coastal Villa Integration — Solar Vex",
+        "title": "Coastal Villa Integration (Case) — Solar Vex",
         "content": """
   <section class="product-detail-hero">
     <div class="product-detail-img">
-      <img src="images/pv-system.jpg" alt="Coastal Villa Integration">
+      <img src="images/pv-system.jpg" alt="Coastal Villa Project Timeline">
     </div>
     <div class="product-detail-content">
-      <h1>Coastal Villa Integration</h1>
+      <h1>Coastal Villa Project</h1>
       <div class="product-detail-price">Case Study</div>
-      <p class="product-detail-desc">A flagship integration of our premium residential suite. Situated in Malibu, CA, this 15kW installation leverages highly salt-resistant Monocrystalline arrays alongside a dual 20kWh storage bank. The project achieved a 98% grid-independence rating within its first operational quarter, entirely offsetting the estate's heavy HVAC loads.</p>
+      <p class="product-detail-desc">A deep-dive into real-world project execution. The timeline involved 6 weeks of structural reinforcement due to high wind-shear coastal limits, followed by custom salt-resistant mounting. The 15kW structural setup hurdle was overcome using titanium-reinforced rail anchors.</p>
       
       <div class="product-specs">
         <div class="spec-row">
-          <span class="spec-label">Location</span>
-          <span class="spec-value">Malibu, CA</span>
+          <span class="spec-label">Timeline</span>
+          <span class="spec-value">12 Weeks Total</span>
         </div>
         <div class="spec-row">
-          <span class="spec-label">Scale</span>
-          <span class="spec-value">15kW</span>
+          <span class="spec-label">Structural Hurdle</span>
+          <span class="spec-value">High Wind-Shear</span>
         </div>
         <div class="spec-row">
-          <span class="spec-label">Grid Independence</span>
-          <span class="spec-value">98%</span>
+          <span class="spec-label">Output Metric</span>
+          <span class="spec-value">15kW Continuous</span>
         </div>
       </div>
       
-      <button class="add-to-cart-btn" onclick="addToCart({ id: 'pv-modules', name: 'Monocrystalline PV Modules (Coastal Bundle)', price: 19500, img: 'images/pv_modules.png' })">Add Coastal Configuration to Order</button>
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Coastal Villa Implementation Data', price: 19500, type: 'Case', img: 'images/pv-system.jpg' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
     </div>
   </section>
 """
     },
     "case-urban.html": {
-        "title": "Urban Grid Modernization — Solar Vex",
+        "title": "Urban Grid Modernization (Case) — Solar Vex",
         "content": """
   <section class="product-detail-hero">
     <div class="product-detail-img">
-      <img src="images/solar-farm.jpg" alt="Urban Grid Modernization">
+      <img src="images/solar-farm.jpg" alt="Urban Grid Project Timeline">
     </div>
     <div class="product-detail-content">
-      <h1>Urban Grid Modernization</h1>
-      <div class="product-detail-price">Utility Scale</div>
-      <p class="product-detail-desc">A 2.5MW commercial deployment designed to stabilize a heavily strained industrial sector. This project bypassed traditional utility upgrades by deploying localized heavy-industry transformation enclosures and algorithmic peak-shaving frameworks, resolving capacity constraints and reducing enterprise overhead by 34%.</p>
+      <h1>Urban Grid Project</h1>
+      <div class="product-detail-price">Case Study</div>
+      <p class="product-detail-desc">Detailed deep-dive mapping the real-world timeline of upgrading a downtown utility. The 2.5MW structural setup hurdled heavy municipal zoning limits. Utilizing hyper-dense arrays, the megawatt output metrics achieved a continuous baseline that shaved 34% of local utility stress.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Timeline</span>
+          <span class="spec-value">8 Months</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Structural Hurdle</span>
+          <span class="spec-value">Zoning & Density</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Output Metric</span>
+          <span class="spec-value">2.5MW Baseline</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Urban Grid Blueprint Data', price: 42000, type: 'Case', img: 'images/solar-farm.jpg' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
+    </div>
+  </section>
+"""
+    },
+    "solution-coastal.html": {
+        "title": "Coastal Villa Integration (Solution) — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/pv-system.jpg" alt="Coastal Villa Solution">
+    </div>
+    <div class="product-detail-content">
+      <h1>Coastal Villa Solution</h1>
+      <div class="product-detail-price">Solution</div>
+      <p class="product-detail-desc">An explicit architectural zero-impact pairing solution. This smart grid setup employs advanced load balancing logic to route solar energy seamlessly between the villa's high-demand HVAC and the reserve storage banks, ensuring zero aesthetic disruption to the modern facade.</p>
+      
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-label">Aesthetics</span>
+          <span class="spec-value">Zero-Impact</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Routing</span>
+          <span class="spec-value">Smart Grid Load Balancing</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Application</span>
+          <span class="spec-value">Premium Residential</span>
+        </div>
+      </div>
+      
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Coastal Villa Solution Package', price: 14500, type: 'Solution', img: 'images/pv-system.jpg' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
+    </div>
+  </section>
+"""
+    },
+    "project-industrial.html": {
+        "title": "Industrial Solar Roof Array — Solar Vex",
+        "content": """
+  <section class="product-detail-hero">
+    <div class="product-detail-img">
+      <img src="images/industrial-roof.png" alt="Industrial Solar Roof Array">
+    </div>
+    <div class="product-detail-content">
+      <h1>Industrial Solar Roof Array</h1>
+      <div class="product-detail-price">Commercial Scale</div>
+      <p class="product-detail-desc">Deployed high-density automated solar setups across factory roofs to drastically reduce industrial manufacturing operational overhead.</p>
       
       <div class="product-specs">
         <div class="spec-row">
           <span class="spec-label">Output</span>
-          <span class="spec-value">2.5MW</span>
+          <span class="spec-value">1.8MW</span>
         </div>
         <div class="spec-row">
           <span class="spec-label">Status</span>
           <span class="spec-value">Active</span>
         </div>
         <div class="spec-row">
-          <span class="spec-label">Overhead Reduction</span>
-          <span class="spec-value">34%</span>
+          <span class="spec-label">Application</span>
+          <span class="spec-value">Commercial Manufacturing</span>
         </div>
       </div>
       
-      <button class="add-to-cart-btn" onclick="addToCart({ id: 'smart-inverter', name: 'Smart Wave Inverters (Commercial Block)', price: 42000, img: 'images/smart_inverter.png' })">Inquire About Utility Scale Solutions</button>
+      <button class="add-to-cart-btn" onclick="addToCart({ title: 'Industrial Roof Package', price: 42000, type: 'Project', img: 'images/industrial-roof.png' })">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="margin-right: 8px; vertical-align: middle;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Add to Cart
+      </button>
     </div>
   </section>
 """
@@ -404,34 +489,45 @@ template = """<!DOCTYPE html>
       <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item hover-cyan">Home</a>
-        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
-        <a href="products.html" class="menu-item hover-cyan">Products</a>
-        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
+        <a href="index.html#section-solutions" class="menu-item hover-cyan">Solutions</a>
+        <a href="index.html#section-products" class="menu-item hover-cyan">Products</a>
+        <a href="index.html#section-cases" class="menu-item hover-cyan">Cases</a>
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
       <!-- Deep Content Sub-nav -->
-      <div class="menu-details">
+      <div class="menu-details" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
         <div class="menu-block">
           <h4>Solutions</h4>
-          <a href="solutions.html" class="sub-link hover-orange">
+          <a href="solution-coastal.html" class="sub-link hover-orange">
             <div class="sub-icon"><img src="images/pv-system.jpg" alt="Residential"></div>
             <span class="sub-text">Residential Energy<br>Integration</span>
           </a>
-          <a href="solutions.html" class="sub-link hover-orange">
-            <div class="sub-icon"><img src="images/solar-farm.jpg" alt="Commercial"></div>
-            <span class="sub-text">Commercial Scale<br>Microgrids</span>
+          <a href="project-industrial.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/industrial-roof.png" alt="Industrial"></div>
+            <span class="sub-text">Industrial Solar<br>Roof Array</span>
           </a>
         </div>
         <div class="menu-block">
-          <h4>Support & Community</h4>
-          <a href="support.html" class="sub-link hover-cyan">
-            <div class="sub-icon"><img src="images/smart-energy.jpg" alt="Diagnostic"></div>
-            <span class="sub-text">Real-Time System<br>Diagnostics</span>
+          <h4>Products</h4>
+          <a href="product-modules.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/pv_modules.png" alt="Modules"></div>
+            <span class="sub-text">Monocrystalline<br>PV Modules</span>
           </a>
-          <a href="community.html" class="sub-link hover-cyan">
-            <div class="sub-icon"><img src="images/hero-bg.jpg" alt="Forum"></div>
-            <span class="sub-text">Global Sustainability<br>Grants</span>
+          <a href="product-inverter.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/smart_inverter.png" alt="Inverter"></div>
+            <span class="sub-text">Smart Wave<br>Inverters</span>
+          </a>
+        </div>
+        <div class="menu-block">
+          <h4>Cases</h4>
+          <a href="case-coastal.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/hero-bg.jpg" alt="Coastal"></div>
+            <span class="sub-text">Coastal Wind<br>Resistance Array</span>
+          </a>
+          <a href="case-urban.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/smart-energy.jpg" alt="Urban"></div>
+            <span class="sub-text">High-Density<br>Urban Rooftop</span>
           </a>
         </div>
       </div>
@@ -681,13 +777,32 @@ template = """<!DOCTYPE html>
 
     // BACK NAVIGATION FALLBACK (BFCache Restore Fix)
     window.addEventListener('pageshow', function(event) {
-        if (event.persisted) {
+        if (event.persisted || window.location.hash === '' || window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
             transitionCurtain.style.pointerEvents = 'none';
             gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
+            
+            // Explicit state clearing on BFCache restore
+            const detailsModal = document.getElementById('detailsModal');
+            if (detailsModal) {
+                detailsModal.classList.remove('open');
+                detailsModal.style.pointerEvents = 'none';
+            }
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
         }
     });
     window.addEventListener('popstate', function(event) {
         if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+            const detailsModal = document.getElementById('detailsModal');
+            if (detailsModal) {
+                detailsModal.classList.remove('open');
+                detailsModal.style.pointerEvents = 'none';
+            }
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
+            
             window.location.reload();
         }
         transitionCurtain.style.pointerEvents = 'none';
@@ -765,9 +880,10 @@ template = """<!DOCTYPE html>
         total += item.price * item.quantity;
         html += `
           <div class="cart-item">
-            <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+            <img src="${item.img}" class="cart-item-img" alt="${item.title}">
             <div class="cart-item-details">
-              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-type" style="font-size: 10px; color: var(--orange); text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">${item.type}</div>
+              <div class="cart-item-title">${item.title}</div>
               <div class="cart-item-price">$${item.price.toLocaleString()}</div>
               <div class="cart-item-qty">
                 <button onclick="updateCartQty(${index}, -1)">-</button>
@@ -795,7 +911,7 @@ template = """<!DOCTYPE html>
 
     window.addToCart = function(product) {
       const cart = getCart();
-      const existing = cart.find(item => item.id === product.id);
+      const existing = cart.find(item => item.title === product.title && item.type === product.type);
       if (existing) {
         existing.quantity += 1;
       } else {

@@ -109,34 +109,45 @@
       <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item active-link hover-cyan">Home</a>
-        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
-        <a href="products.html" class="menu-item hover-cyan">Products</a>
-        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
+        <a href="index.html#section-solutions" class="menu-item hover-cyan">Solutions</a>
+        <a href="index.html#section-products" class="menu-item hover-cyan">Products</a>
+        <a href="index.html#section-cases" class="menu-item hover-cyan">Cases</a>
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
       <!-- Deep Content Sub-nav -->
-      <div class="menu-details">
+      <div class="menu-details" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
         <div class="menu-block">
           <h4>Solutions</h4>
-          <a href="solutions.html" class="sub-link hover-orange">
+          <a href="solution-coastal.html" class="sub-link hover-orange">
             <div class="sub-icon"><img src="images/pv-system.jpg" alt="Residential"></div>
             <span class="sub-text">Residential Energy<br>Integration</span>
           </a>
-          <a href="solutions.html" class="sub-link hover-orange">
-            <div class="sub-icon"><img src="images/solar-farm.jpg" alt="Commercial"></div>
-            <span class="sub-text">Commercial Scale<br>Microgrids</span>
+          <a href="project-industrial.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/industrial-roof.png" alt="Industrial"></div>
+            <span class="sub-text">Industrial Solar<br>Roof Array</span>
           </a>
         </div>
         <div class="menu-block">
-          <h4>Support & Community</h4>
-          <a href="support.html" class="sub-link hover-cyan">
-            <div class="sub-icon"><img src="images/smart-energy.jpg" alt="Diagnostic"></div>
-            <span class="sub-text">Real-Time System<br>Diagnostics</span>
+          <h4>Products</h4>
+          <a href="product-modules.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/pv_modules.png" alt="Modules"></div>
+            <span class="sub-text">Monocrystalline<br>PV Modules</span>
           </a>
-          <a href="community.html" class="sub-link hover-cyan">
-            <div class="sub-icon"><img src="images/hero-bg.jpg" alt="Forum"></div>
-            <span class="sub-text">Global Sustainability<br>Grants</span>
+          <a href="product-inverter.html" class="sub-link hover-cyan">
+            <div class="sub-icon"><img src="images/smart_inverter.png" alt="Inverter"></div>
+            <span class="sub-text">Smart Wave<br>Inverters</span>
+          </a>
+        </div>
+        <div class="menu-block">
+          <h4>Cases</h4>
+          <a href="case-coastal.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/hero-bg.jpg" alt="Coastal"></div>
+            <span class="sub-text">Coastal Wind<br>Resistance Array</span>
+          </a>
+          <a href="case-urban.html" class="sub-link hover-orange">
+            <div class="sub-icon"><img src="images/smart-energy.jpg" alt="Urban"></div>
+            <span class="sub-text">High-Density<br>Urban Rooftop</span>
           </a>
         </div>
       </div>
@@ -297,8 +308,8 @@
       <div class="media-list">
         <a href="#" class="media-card media-small hover-reveal">
           <div class="media-content">
-            <span class="media-date">May 06, 2026</span>
-            <h3 class="media-card-title">Guidelines - Identifying unofficial Channel Products</h3>
+            <span class="media-date">May 02, 2026</span>
+            <h3 class="media-card-title">Solar Vex Secures Tier-1 EPC Certification for Commercial Microgrids</h3>
           </div>
         </a>
         <a href="#" class="media-card media-small hover-reveal">
@@ -476,6 +487,34 @@
         color: 'hover-cyan',
         metrics: [
           { label: 'Output', value: '2.5MW' },
+          { label: 'Status', value: 'Active' }
+        ]
+      },
+      {
+        id: 'solution-coastal',
+        category: 'pv',
+        span: 'span-8',
+        tag: 'Residential Solution',
+        title: 'Coastal Villa Solution',
+        img: 'images/pv-system.jpg',
+        url: 'solution-coastal.html',
+        color: 'hover-orange',
+        metrics: [
+          { label: 'Aesthetics', value: 'Zero-Impact' },
+          { label: 'Application', value: 'Residential' }
+        ]
+      },
+      {
+        id: 'project-industrial',
+        category: 'smart',
+        span: 'span-4',
+        tag: 'Commercial Scale',
+        title: 'Industrial Solar Roof Array',
+        img: 'images/industrial-roof.png',
+        url: 'project-industrial.html',
+        color: 'hover-cyan',
+        metrics: [
+          { label: 'Output', value: '1.8MW' },
           { label: 'Status', value: 'Active' }
         ]
       }
@@ -1026,8 +1065,77 @@
     const panelsGroup = new THREE.Group();
     pScene.add(panelsGroup);
 
-    const panelGeo = new THREE.PlaneGeometry(3, 5);
-    const panelMat = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.15, metalness: 0.9, side: THREE.DoubleSide });
+    // Generate Procedural Electric Solar Panel Texture
+    const panelCanvas = document.createElement('canvas');
+    panelCanvas.width = 1024;
+    panelCanvas.height = 1024;
+    const pctx = panelCanvas.getContext('2d');
+    
+    // Deep blue / violet base
+    pctx.fillStyle = '#0a0d20';
+    pctx.fillRect(0, 0, 1024, 1024);
+    
+    // Electric/White thick grid
+    pctx.strokeStyle = '#e0f7fa'; // Very bright cyan-white
+    pctx.lineWidth = 10;
+    pctx.shadowBlur = 8;
+    pctx.shadowColor = '#00e5ff'; // Electric cyan glow
+    
+    const cols = 8;
+    const rows = 12;
+    
+    pctx.beginPath();
+    for(let i=0; i<=cols; i++) {
+        pctx.moveTo((i/cols)*1024, 0);
+        pctx.lineTo((i/cols)*1024, 1024);
+    }
+    for(let i=0; i<=rows; i++) {
+        pctx.moveTo(0, (i/rows)*1024);
+        pctx.lineTo(1024, (i/rows)*1024);
+    }
+    pctx.stroke();
+    
+    // Reset shadow for inner thin lines
+    pctx.shadowBlur = 0;
+    pctx.strokeStyle = '#80deea';
+    pctx.lineWidth = 3;
+    pctx.beginPath();
+    for(let i=0; i<cols; i++) {
+        let cellStartX = (i/cols)*1024;
+        let cellWidth = 1024/cols;
+        for(let j=1; j<=3; j++) {
+            let bx = cellStartX + (cellWidth * (j/4));
+            pctx.moveTo(bx, 0);
+            pctx.lineTo(bx, 1024);
+        }
+    }
+    pctx.stroke();
+
+    const panelTexture = new THREE.CanvasTexture(panelCanvas);
+    panelTexture.anisotropy = pRenderer.capabilities.getMaxAnisotropy();
+    panelTexture.wrapS = THREE.RepeatWrapping;
+    panelTexture.wrapT = THREE.RepeatWrapping;
+    panelTexture.repeat.set(1, 1.5);
+    
+    // Box geometry to give it thickness like a real panel
+    const panelGeo = new THREE.BoxGeometry(3, 5, 0.15);
+    
+    // Materials for front (textured) and back/sides (plain)
+    const frontMat = new THREE.MeshPhysicalMaterial({ 
+      map: panelTexture, 
+      color: 0x113399,
+      emissive: 0x0055ff,
+      emissiveMap: panelTexture,
+      emissiveIntensity: 0.8,
+      roughness: 0.05, 
+      metalness: 0.9,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05
+    });
+    const sideMat = new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.8, metalness: 0.5 });
+    
+    // BoxGeometry material array: right, left, top, bottom, front, back
+    const panelMat = [sideMat, sideMat, sideMat, sideMat, frontMat, sideMat];
     
     for(let i = -2; i <= 2; i++) {
       const panel = new THREE.Mesh(panelGeo, panelMat);
@@ -1036,11 +1144,18 @@
       panelsGroup.add(panel);
     }
 
-    const pAmbient = new THREE.AmbientLight(0xffffff, 0.8);
+    const pAmbient = new THREE.AmbientLight(0xffffff, 0.5);
     pScene.add(pAmbient);
-    const pDirLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    pDirLight.position.set(5, 10, 5);
+    
+    // Directional light mapped perfectly for strong specular reflection on angled panels
+    const pDirLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    pDirLight.position.set(0, 15, 10);
     pScene.add(pDirLight);
+    
+    // Point light to amplify the electric blue speculars
+    const pPointLight = new THREE.PointLight(0x00e5ff, 5, 50);
+    pPointLight.position.set(5, 5, 5);
+    pScene.add(pPointLight);
 
     const pcCount = 1500;
     const pcGeo = new THREE.BufferGeometry();
@@ -1180,13 +1295,32 @@
 
     // BACK NAVIGATION FALLBACK (BFCache Restore Fix)
     window.addEventListener('pageshow', function(event) {
-        if (event.persisted) {
+        if (event.persisted || window.location.hash === '' || window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
             transitionCurtain.style.pointerEvents = 'none';
             gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
+            
+            // Explicit state clearing on BFCache restore
+            const detailsModal = document.getElementById('detailsModal');
+            if (detailsModal) {
+                detailsModal.classList.remove('open');
+                detailsModal.style.pointerEvents = 'none';
+            }
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
         }
     });
     window.addEventListener('popstate', function(event) {
         if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+            const detailsModal = document.getElementById('detailsModal');
+            if (detailsModal) {
+                detailsModal.classList.remove('open');
+                detailsModal.style.pointerEvents = 'none';
+            }
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
+            
             window.location.reload();
         }
         transitionCurtain.style.pointerEvents = 'none';
@@ -1264,9 +1398,10 @@
         total += item.price * item.quantity;
         html += `
           <div class="cart-item">
-            <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+            <img src="${item.img}" class="cart-item-img" alt="${item.title}">
             <div class="cart-item-details">
-              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-type" style="font-size: 10px; color: var(--orange); text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">${item.type}</div>
+              <div class="cart-item-title">${item.title}</div>
               <div class="cart-item-price">$${item.price.toLocaleString()}</div>
               <div class="cart-item-qty">
                 <button onclick="updateCartQty(${index}, -1)">-</button>
@@ -1294,7 +1429,7 @@
 
     window.addToCart = function(product) {
       const cart = getCart();
-      const existing = cart.find(item => item.id === product.id);
+      const existing = cart.find(item => item.title === product.title && item.type === product.type);
       if (existing) {
         existing.quantity += 1;
       } else {
