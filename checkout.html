@@ -455,9 +455,21 @@
 
     // Intercept internal links for outbound cross-fade transition
     document.querySelectorAll('a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function(e) {
         let target = this.getAttribute('href');
         if (!target) return;
+        
+        // Clean up the route mapping tokens completely to match our exact file extensions
+        const routeMap = {
+          'product-modules': 'product-modules.html',
+          'product-inverters': 'product-inverter.html',
+          'product-storage': 'product-storage.html',
+          'solution-urban-grid': 'project-industrial.html',
+          'solution-coastal-villa': 'solution-coastal.html'
+        };
+        
+        let actualTarget = routeMap[target] || target;
+        target = actualTarget; // Ensure target is updated for the rest of the function!
         
         const isTransitionTarget = target.includes('.html');
         if(isTransitionTarget && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
@@ -488,9 +500,10 @@
           if (fullscreenMenu) fullscreenMenu.classList.remove('open');
           document.body.classList.add('page-exiting');
           transitionCurtain.style.pointerEvents = 'auto';
-          setTimeout(() => {
-            window.location.href = target;
-          }, 380);
+          gsap.to(transitionCurtain, { opacity: 1, duration: 0.35, ease: 'power2.inOut', onComplete: () => {
+            // Clean up any forced leading slash so Vercel searches the local directory safely
+            window.location.href = actualTarget.replace(/^\//, ''); 
+          }});
         }
       });
     });
