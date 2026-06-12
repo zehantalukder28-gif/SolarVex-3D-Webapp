@@ -76,9 +76,28 @@
       <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item hover-cyan">Home</a>
-        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
-        <a href="products.html" class="menu-item hover-cyan">Products</a>
-        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
+        <div class="menu-item-group">
+          <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
+          <div class="menu-sub-dropdown">
+            <a href="/solution-coastal-villa" class="menu-sub-item hover-orange">— Coastal Villa Solution</a>
+            <a href="/solution-urban-grid" class="menu-sub-item hover-orange">— Urban Grid Solution</a>
+          </div>
+        </div>
+        <div class="menu-item-group">
+          <a href="products.html" class="menu-item hover-cyan">Products</a>
+          <div class="menu-sub-dropdown">
+            <a href="/product-modules" class="menu-sub-item hover-cyan">— Monocrystalline PV Modules</a>
+            <a href="/product-inverters" class="menu-sub-item hover-cyan">— Smart Wave Inverters</a>
+            <a href="/product-storage" class="menu-sub-item hover-cyan">— High-Capacity Storage Cells</a>
+          </div>
+        </div>
+        <div class="menu-item-group">
+          <a href="cases.html" class="menu-item hover-cyan">Cases</a>
+          <div class="menu-sub-dropdown">
+            <a href="case-coastal.html" class="menu-sub-item hover-orange">— Coastal Wind Resistance Array</a>
+            <a href="case-urban.html" class="menu-sub-item hover-orange">— High-Density Urban Rooftop</a>
+          </div>
+        </div>
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
@@ -442,8 +461,23 @@
     // Intercept internal links for outbound cross-fade transition
     document.querySelectorAll('a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        const target = this.getAttribute('href');
-        if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
+        let target = this.getAttribute('href');
+        if (!target) return;
+        
+        // Clean URL routing fallback mapping
+        const routeMap = {
+          '/product-modules': 'product-modules.html',
+          '/product-inverters': 'product-inverter.html',
+          '/product-storage': 'product-storage.html',
+          '/solution-urban-grid': 'project-industrial.html',
+          '/solution-coastal-villa': 'solution-coastal.html'
+        };
+        if (routeMap[target]) {
+          target = routeMap[target];
+        }
+        
+        const isTransitionTarget = target.includes('.html') || Object.values(routeMap).includes(target);
+        if(isTransitionTarget && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
           const isSamePageHash = target.includes('#') && (
             (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
             (window.location.pathname.endsWith(target.split('#')[0]))
