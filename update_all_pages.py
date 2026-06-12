@@ -802,8 +802,6 @@ template = """<!DOCTYPE html>
             const fullscreenMenu = document.getElementById('fullscreenMenu');
             if (fullscreenMenu) fullscreenMenu.classList.remove('open');
             document.body.style.overflow = 'auto';
-            
-            window.location.reload();
         }
         transitionCurtain.style.pointerEvents = 'none';
         gsap.set(transitionCurtain, { y: '100%' });
