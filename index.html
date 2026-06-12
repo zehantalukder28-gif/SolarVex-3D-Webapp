@@ -109,28 +109,9 @@
       <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item active-link hover-cyan">Home</a>
-        <div class="menu-item-group">
-          <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
-          <div class="menu-sub-dropdown">
-            <a href="/solution-coastal-villa" class="menu-sub-item hover-orange">— Coastal Villa Solution</a>
-            <a href="/solution-urban-grid" class="menu-sub-item hover-orange">— Urban Grid Solution</a>
-          </div>
-        </div>
-        <div class="menu-item-group">
-          <a href="products.html" class="menu-item hover-cyan">Products</a>
-          <div class="menu-sub-dropdown">
-            <a href="/product-modules" class="menu-sub-item hover-cyan">— Monocrystalline PV Modules</a>
-            <a href="/product-inverters" class="menu-sub-item hover-cyan">— Smart Wave Inverters</a>
-            <a href="/product-storage" class="menu-sub-item hover-cyan">— High-Capacity Storage Cells</a>
-          </div>
-        </div>
-        <div class="menu-item-group">
-          <a href="cases.html" class="menu-item hover-cyan">Cases</a>
-          <div class="menu-sub-dropdown">
-            <a href="case-coastal.html" class="menu-sub-item hover-orange">— Coastal Wind Resistance Array</a>
-            <a href="case-urban.html" class="menu-sub-item hover-orange">— High-Density Urban Rooftop</a>
-          </div>
-        </div>
+        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
+        <a href="products.html" class="menu-item hover-cyan">Products</a>
+        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
@@ -491,8 +472,9 @@
         url: 'case-coastal.html',
         color: 'hover-orange',
         metrics: [
-          { label: 'Scale', value: '15kW' },
-          { label: 'Location', value: 'Malibu, CA' }
+          { label: 'Aesthetic Focus', value: 'Architectural Shingling Integration - Flush, editorial-grade module mounting that disappears into the luxury shingle line.' },
+          { label: 'Operational Focus', value: 'Passive Ocean Breeze Cooling Sync - Smart ventilation dampers that leverage native coastal air currents to reduce air conditioning load.' },
+          { label: 'Resilience Focus', value: 'Marine-Grade Salt Corrosion Protection - All mounting hardware and modules are coated with proprietary hydrophobic polymers for long-term coastal durability.' }
         ]
       },
       {
@@ -776,6 +758,7 @@
 
       detailsModal.style.pointerEvents = 'auto'; // Unlock from BFCache state
       detailsModal.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Freeze homepage scrolling
       if (typeof lenis !== 'undefined') lenis.stop();
       
       // Animate modal content
@@ -787,6 +770,8 @@
 
     function closeDetailsModal() {
       detailsModal.classList.remove('open');
+      document.body.style.overflow = 'unset'; // Unfreeze homepage scrolling
+      detailsModal.style.pointerEvents = 'none'; // Release pointer events overlay
       if (typeof lenis !== 'undefined') lenis.start();
       gsap.set(detailsModal.querySelector('.details-modal-container'), { clearProps: "all" });
     }
