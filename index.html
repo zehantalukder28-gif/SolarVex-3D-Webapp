@@ -755,6 +755,7 @@
       actionBtn.href = item.url;
       actionBtn.innerText = item.category === 'pv' || item.category === 'storage' ? "View Deep Case Analysis →" : "Explore Full Specifications →";
 
+      detailsModal.style.pointerEvents = 'auto'; // Unlock from BFCache state
       detailsModal.classList.add('open');
       if (typeof lenis !== 'undefined') lenis.stop();
       
@@ -1267,6 +1268,18 @@
     }
     requestAnimationFrame(raf);
 
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.location.hash) {
+            setTimeout(() => {
+                if (typeof lenis !== 'undefined') {
+                    lenis.scrollTo(window.location.hash, { offset: -100, immediate: true });
+                } else {
+                    document.querySelector(window.location.hash)?.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    });
+
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time)=>{ lenis.raf(time * 1000) });
@@ -1336,15 +1349,25 @@
     document.querySelectorAll('a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
-        if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card')) {
+        if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
           const isSamePageHash = target.includes('#') && (
             (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
             (window.location.pathname.endsWith(target.split('#')[0]))
           );
           
           if (isSamePageHash) {
+             e.preventDefault();
              const fullscreenMenu = document.getElementById('fullscreenMenu');
              if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+             
+             const hash = target.split('#')[1];
+             if (hash) {
+                 if (typeof lenis !== 'undefined') {
+                     lenis.scrollTo('#' + hash, { offset: -100 });
+                 } else {
+                     document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+                 }
+             }
              return;
           }
 
