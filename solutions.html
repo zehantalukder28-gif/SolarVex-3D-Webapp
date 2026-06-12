@@ -15,19 +15,15 @@
   <div class="noise-overlay"></div>
   <div class="page-transition-curtain" id="pageTransitionCurtain"></div>
 
-  <!-- DUAL-CURSOR BLOB -->
   <div class="cursor-blob" id="cursorBlob"></div>
 
-  <!-- Header -->
   <header class="header" id="header" style="background: rgba(245, 244, 240, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0, 0, 0, 0.05);">
     <div class="header-inner">
       <a href="index.html" class="logo hover-orange">
         <svg viewBox="0 0 100 100" class="brand-logo">
-          <!-- Geometric Sun Crest -->
           <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="3"/>
           <path d="M50 15 L50 5 M85 50 L95 50 M50 85 L50 95 M15 50 L5 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           <path d="M75 25 L82 18 M75 75 L82 82 M25 75 L18 82 M25 25 L18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-          <!-- Solar Tracking Vectors inside the sun -->
           <rect x="35" y="40" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
           <line x1="50" y1="40" x2="50" y2="60" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
           <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
@@ -57,7 +53,6 @@
     </div>
   </header>
 
-  <!-- ==================== PREMIUM SEARCH OVERLAY ==================== -->
   <div class="search-overlay" id="searchOverlay">
     <button class="search-close hover-orange" id="searchClose">CLOSE</button>
     <div class="search-container">
@@ -69,11 +64,9 @@
     </div>
   </div>
 
-  <!-- FULLSCREEN MENU OVERLAY -->
   <nav class="fullscreen-menu" id="fullscreenMenu">
     <button class="menu-close hover-orange" id="menuClose">close</button>
     <div class="menu-grid">
-      <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item hover-cyan">Home</a>
         <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
@@ -82,7 +75,6 @@
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
-      <!-- Deep Content Sub-nav -->
       <div class="menu-details" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
         <div class="menu-block">
           <h4>Solutions</h4>
@@ -121,7 +113,6 @@
     </div>
   </nav>
 
-  <!-- CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
@@ -147,28 +138,33 @@
       <div class="content-block">
         <h3>Residential Energy Integration</h3>
         <p>Engineered to transition private estates into sovereign power units. Features intelligent multi-string rooftop tracking layouts, aesthetic zero-impact architectural panel pairing, and autonomous localized grid fallbacks that shield residential properties from public utility instabilities.</p>
+        <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.5px;">$14,500</span>
+          <button class="add-to-cart-btn" onclick="window.addToCart({ title: 'Residential Energy Integration', type: 'Solution', price: 14500, img: 'images/pv-system.jpg' })" style="padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Configure & Add to Cart</button>
+        </div>
         <img src="images/pv-system.jpg" alt="Residential Energy Integration">
       </div>
       <div class="content-block">
         <h3>Commercial Scale Microgrids</h3>
         <p>High-yielding decentralized infrastructure built for maximum continuous output. Deploys optimized megawatt-level tracking systems, localized heavy-industry transformation enclosures, and algorithmic peak-shaving frameworks designed to cut operational corporate energy expenses by up to 40%.</p>
+        <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.5px;">$85,000</span>
+          <button class="add-to-cart-btn" onclick="window.addToCart({ title: 'Commercial Scale Microgrids', type: 'Solution', price: 85000, img: 'images/solar-farm.jpg' })" style="padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Configure & Add to Cart</button>
+        </div>
         <img src="images/solar-farm.jpg" alt="Commercial Scale Microgrids">
       </div>
     </div>
   </section>
 
 
-  <!-- FOOTER -->
   <footer class="footer" style="margin-top: 80px;">
     <div class="footer-top">
       <div>
         <div class="footer-brand">
           <svg viewBox="0 0 100 100" class="brand-logo">
-            <!-- Geometric Sun Crest -->
             <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" stroke-width="3"/>
             <path d="M50 15 L50 5 M85 50 L95 50 M50 85 L50 95 M15 50 L5 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
             <path d="M75 25 L82 18 M75 75 L82 82 M25 75 L18 82 M25 25 L18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            <!-- Solar Tracking Vectors inside the sun -->
             <rect x="35" y="40" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
             <line x1="50" y1="40" x2="50" y2="60" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
             <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2" transform="rotate(-15 50 50)"/>
@@ -380,7 +376,7 @@
     });
 
     /* ========================================
-       PREMIUM CROSS-FADE PAGE TRANSITIONS
+       STANDARD ROUTING FOR VANILLA HYDROSTATIC LINKS
        ======================================== */
     const transitionCurtain = document.getElementById('pageTransitionCurtain');
     
@@ -424,30 +420,15 @@
         document.body.classList.remove('page-exiting');
     });
 
-    // Intercept internal links for outbound cross-fade transition
+    // Intercept standard local target elements
     document.querySelectorAll('a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        let target = this.getAttribute('href');
+        const target = this.getAttribute('href');
         if (!target) return;
         
-        // Clean URL routing fallback mapping
-        const routeMap = {
-          '/product-modules': 'product-modules.html',
-          '/product-inverters': 'product-inverter.html',
-          '/product-storage': 'product-storage.html',
-          '/solution-urban-grid': 'project-industrial.html',
-          '/solution-coastal-villa': 'solution-coastal.html'
-        };
-        if (routeMap[target]) {
-          target = routeMap[target];
-        }
-        
-        const isTransitionTarget = target.includes('.html') || Object.values(routeMap).includes(target);
+        const isTransitionTarget = target.includes('.html');
         if(isTransitionTarget && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
-          const isSamePageHash = target.includes('#') && (
-            (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
-            (window.location.pathname.endsWith(target.split('#')[0]))
-          );
+          const isSamePageHash = target.includes('#') && window.location.pathname.endsWith(target.split('#')[0]);
           
           if (isSamePageHash) {
              e.preventDefault();
@@ -465,15 +446,16 @@
              return;
           }
 
-          // OUTBOUND: Cross-fade content out, then navigate
+          // OUTBOUND: Fade curtain over layout framework
           e.preventDefault();
           const fullscreenMenu = document.getElementById('fullscreenMenu');
           if (fullscreenMenu) fullscreenMenu.classList.remove('open');
           document.body.classList.add('page-exiting');
+          transitionCurtain.style.display = 'block';
           transitionCurtain.style.pointerEvents = 'auto';
-          setTimeout(() => {
+          gsap.to(transitionCurtain, { opacity: 1, duration: 0.35, ease: 'power2.inOut', onComplete: () => {
             window.location.href = target;
-          }, 380);
+          }});
         }
       });
     });

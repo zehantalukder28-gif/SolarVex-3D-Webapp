@@ -445,19 +445,7 @@
         let target = this.getAttribute('href');
         if (!target) return;
         
-        // Clean URL routing fallback mapping
-        const routeMap = {
-          '/product-modules': 'product-modules.html',
-          '/product-inverters': 'product-inverter.html',
-          '/product-storage': 'product-storage.html',
-          '/solution-urban-grid': 'project-industrial.html',
-          '/solution-coastal-villa': 'solution-coastal.html'
-        };
-        if (routeMap[target]) {
-          target = routeMap[target];
-        }
-        
-        const isTransitionTarget = target.includes('.html') || Object.values(routeMap).includes(target);
+        const isTransitionTarget = target.includes('.html');
         if(isTransitionTarget && !this.hasAttribute('target') && !this.classList.contains('product-card') && this.id !== 'modalActionBtn') {
           const isSamePageHash = target.includes('#') && (
             (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
