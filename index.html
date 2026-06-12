@@ -766,22 +766,29 @@
     }
 
     function closeDetailsModal() {
-      gsap.to(detailsModal.querySelector('.details-modal-container'), {
-        scale: 0.95, y: 30, opacity: 0, duration: 0.3, ease: 'power3.in',
-        onComplete: () => {
-          detailsModal.classList.remove('open');
-          if (typeof lenis !== 'undefined') lenis.start();
-        }
-      });
+      detailsModal.classList.remove('open');
+      if (typeof lenis !== 'undefined') lenis.start();
+      gsap.set(detailsModal.querySelector('.details-modal-container'), { clearProps: "all" });
     }
 
-    detailsClose.addEventListener('click', closeDetailsModal);
-    detailsOverlay.addEventListener('click', closeDetailsModal);
+    detailsClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeDetailsModal();
+    });
+    detailsOverlay.addEventListener('click', (e) => {
+      if (e.target === detailsOverlay) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeDetailsModal();
+      }
+    });
 
     // Click 2: Deep Navigation with Curtain Transition
     document.getElementById('modalActionBtn').addEventListener('click', (e) => {
       e.preventDefault();
-      const href = e.target.getAttribute('href');
+      e.stopPropagation();
+      const href = e.currentTarget.getAttribute('href');
       if (href && href !== '#') {
         const curtain = document.getElementById('pageTransitionCurtain');
         gsap.to(curtain, {
@@ -1330,6 +1337,17 @@
       anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
         if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card')) {
+          const isSamePageHash = target.includes('#') && (
+            (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
+            (window.location.pathname.endsWith(target.split('#')[0]))
+          );
+          
+          if (isSamePageHash) {
+             const fullscreenMenu = document.getElementById('fullscreenMenu');
+             if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+             return;
+          }
+
           e.preventDefault();
           transitionCurtain.style.pointerEvents = 'auto'; // Block interaction during out
           gsap.to(transitionCurtain, { y: '0%', duration: 0.8, ease: 'power3.inOut', onComplete: () => {

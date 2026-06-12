@@ -417,6 +417,17 @@
       anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
         if(target && target.includes('.html') && !this.hasAttribute('target') && !this.classList.contains('product-card')) {
+          const isSamePageHash = target.includes('#') && (
+            (target.startsWith('index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) ||
+            (window.location.pathname.endsWith(target.split('#')[0]))
+          );
+          
+          if (isSamePageHash) {
+             const fullscreenMenu = document.getElementById('fullscreenMenu');
+             if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+             return;
+          }
+
           e.preventDefault();
           transitionCurtain.style.pointerEvents = 'auto';
           gsap.to(transitionCurtain, { y: '0%', duration: 0.8, ease: 'power3.inOut', onComplete: () => {
