@@ -76,9 +76,9 @@
       <!-- Primary Nav -->
       <div class="menu-nav">
         <a href="index.html" class="menu-item hover-cyan">Home</a>
-        <a href="index.html#section-solutions" class="menu-item hover-cyan">Solutions</a>
-        <a href="index.html#section-products" class="menu-item hover-cyan">Products</a>
-        <a href="index.html#section-cases" class="menu-item hover-cyan">Cases</a>
+        <a href="solutions.html" class="menu-item hover-cyan">Solutions</a>
+        <a href="products.html" class="menu-item hover-cyan">Products</a>
+        <a href="cases.html" class="menu-item hover-cyan">Cases</a>
         <a href="support.html" class="menu-item hover-cyan">Support</a>
         <a href="about.html" class="menu-item hover-cyan">About Us</a>
       </div>
@@ -382,49 +382,51 @@
     });
 
     /* ========================================
-       GSAP PAGE TRANSITIONS (CURTAIN EFFECT)
+       PREMIUM CROSS-FADE PAGE TRANSITIONS
        ======================================== */
     const transitionCurtain = document.getElementById('pageTransitionCurtain');
     
-    // Animate curtain up on page load (inbound)
-    gsap.to(transitionCurtain, { y: '-100%', duration: 1.2, ease: 'power4.inOut', onComplete: () => {
-      gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
-      transitionCurtain.style.pointerEvents = 'none';
-    }});
+    // Inbound: fade curtain out to reveal page content
+    gsap.fromTo(transitionCurtain,
+      { opacity: 1 },
+      { opacity: 0, duration: 0.5, ease: 'power2.out', delay: 0.05, onComplete: () => {
+        transitionCurtain.style.pointerEvents = 'none';
+        transitionCurtain.style.display = 'none';
+      }}
+    );
 
     // BACK NAVIGATION FALLBACK (BFCache Restore Fix)
     window.addEventListener('pageshow', function(event) {
-        if (event.persisted || window.location.hash === '' || window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
-            transitionCurtain.style.pointerEvents = 'none';
-            gsap.set(transitionCurtain, { y: '100%', clearProps: 'pointerEvents' });
-            
-            // Explicit state clearing on BFCache restore
-            const detailsModal = document.getElementById('detailsModal');
-            if (detailsModal) {
-                detailsModal.classList.remove('open');
-                detailsModal.style.pointerEvents = 'none';
-            }
-            const fullscreenMenu = document.getElementById('fullscreenMenu');
-            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
-            document.body.style.overflow = 'auto';
+        transitionCurtain.style.pointerEvents = 'none';
+        transitionCurtain.style.display = 'none';
+        gsap.set(transitionCurtain, { opacity: 0 });
+        document.body.classList.remove('page-exiting');
+        
+        const detailsModal = document.getElementById('detailsModal');
+        if (detailsModal) {
+            detailsModal.classList.remove('open');
+            detailsModal.style.pointerEvents = 'none';
         }
+        const fullscreenMenu = document.getElementById('fullscreenMenu');
+        if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
     });
     window.addEventListener('popstate', function(event) {
-        if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
-            const detailsModal = document.getElementById('detailsModal');
-            if (detailsModal) {
-                detailsModal.classList.remove('open');
-                detailsModal.style.pointerEvents = 'none';
-            }
-            const fullscreenMenu = document.getElementById('fullscreenMenu');
-            if (fullscreenMenu) fullscreenMenu.classList.remove('open');
-            document.body.style.overflow = 'auto';
+        const detailsModal = document.getElementById('detailsModal');
+        if (detailsModal) {
+            detailsModal.classList.remove('open');
+            detailsModal.style.pointerEvents = 'none';
         }
+        const fullscreenMenu = document.getElementById('fullscreenMenu');
+        if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
         transitionCurtain.style.pointerEvents = 'none';
-        gsap.set(transitionCurtain, { y: '100%' });
+        transitionCurtain.style.display = 'none';
+        gsap.set(transitionCurtain, { opacity: 0 });
+        document.body.classList.remove('page-exiting');
     });
 
-    // Intercept internal links for outbound transition
+    // Intercept internal links for outbound cross-fade transition
     document.querySelectorAll('a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
@@ -450,11 +452,15 @@
              return;
           }
 
+          // OUTBOUND: Cross-fade content out, then navigate
           e.preventDefault();
+          const fullscreenMenu = document.getElementById('fullscreenMenu');
+          if (fullscreenMenu) fullscreenMenu.classList.remove('open');
+          document.body.classList.add('page-exiting');
           transitionCurtain.style.pointerEvents = 'auto';
-          gsap.to(transitionCurtain, { y: '0%', duration: 0.8, ease: 'power3.inOut', onComplete: () => {
+          setTimeout(() => {
             window.location.href = target;
-          }});
+          }, 380);
         }
       });
     });

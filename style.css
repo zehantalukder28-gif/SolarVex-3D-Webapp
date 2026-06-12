@@ -463,10 +463,16 @@ img { display: block; max-width: 100%; }
   position: fixed; inset: 0; z-index: 10001;
   background: var(--bg);
   pointer-events: none;
-  transform: translateY(0%);
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.04);
+  opacity: 1;
+}
+
+/* Outbound: body content fades out + slides left 15px */
+body.page-exiting > *:not(.page-transition-curtain):not(.cursor-blob):not(.noise-overlay) {
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.page-exiting > *:not(.page-transition-curtain):not(.cursor-blob):not(.noise-overlay) {
+  opacity: 0 !important;
+  transform: translateX(-15px) !important;
 }
 
 @media (max-width: 1024px) {
