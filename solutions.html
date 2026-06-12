@@ -161,37 +161,23 @@
     </h2>
     <div class="page-content-grid">
       <div class="content-block">
-        <h3>Residential Energy Integration</h3>
-        <p>Engineered to transition private estates into sovereign power units. Features intelligent multi-string
-          rooftop tracking layouts, aesthetic zero-impact architectural panel pairing, and autonomous localized grid
-          fallbacks that shield residential properties from public utility instabilities.</p>
-        <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
-          <span style="font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.5px;">$14,500</span>
-          <button class="add-to-cart-btn"
-            onclick="window.addToCart({ title: 'Residential Energy Integration', type: 'Solution', price: 14500, img: 'images/pv-system.jpg' })"
-            style="padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Configure
-            & Add to Cart</button>
-        </div>
-        <a href="solution-coastal.html" style="display: block;">
+        <a href="solution-coastal.html" style="text-decoration: none; color: inherit; display: block;">
+          <h3>Residential Energy Integration</h3>
+          <p>Engineered to transition private estates into sovereign power units. Features intelligent multi-string
+            rooftop tracking layouts, aesthetic zero-impact architectural panel pairing, and autonomous localized grid
+            fallbacks that shield residential properties from public utility instabilities.</p>
           <img src="images/pv-system.jpg" alt="Residential Energy Integration"
-            style="cursor: pointer; width: 100%; display: block;">
+            style="cursor: pointer; width: 100%; display: block; margin-top: 24px;">
         </a>
       </div>
       <div class="content-block">
-        <h3>Commercial Scale Microgrids</h3>
-        <p>High-yielding decentralized infrastructure built for maximum continuous output. Deploys optimized
-          megawatt-level tracking systems, localized heavy-industry transformation enclosures, and algorithmic
-          peak-shaving frameworks designed to cut operational corporate energy expenses by up to 40%.</p>
-        <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
-          <span style="font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.5px;">$85,000</span>
-          <button class="add-to-cart-btn"
-            onclick="window.addToCart({ title: 'Commercial Scale Microgrids', type: 'Solution', price: 85000, img: 'images/solar-farm.jpg' })"
-            style="padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Configure
-            & Add to Cart</button>
-        </div>
-        <a href="project-industrial.html" style="display: block;">
+        <a href="project-industrial.html" style="text-decoration: none; color: inherit; display: block;">
+          <h3>Commercial Scale Microgrids</h3>
+          <p>High-yielding decentralized infrastructure built for maximum continuous output. Deploys optimized
+            megawatt-level tracking systems, localized heavy-industry transformation enclosures, and algorithmic
+            peak-shaving frameworks designed to cut operational corporate energy expenses by up to 40%.</p>
           <img src="images/solar-farm.jpg" alt="Commercial Scale Microgrids"
-            style="cursor: pointer; width: 100%; display: block;">
+            style="cursor: pointer; width: 100%; display: block; margin-top: 24px;">
         </a>
       </div>
     </div>
@@ -596,6 +582,38 @@
     };
 
     updateCartBadge();
+  </script>
+
+  <script>
+    /* GSAP MICRO-INTERACTIONS: FLOAT ON HOVER */
+    document.addEventListener("DOMContentLoaded", () => {
+      const interactiveElements = document.querySelectorAll('.content-block, .search-result-item, .product-card, .add-to-cart-btn, .explore-btn, .quick-add-btn');
+      
+      interactiveElements.forEach(el => {
+        // Only apply if it's not a native link that handles its own hover entirely differently,
+        // but the classes specified are exact match for the prompt.
+        el.addEventListener('mouseenter', () => {
+          gsap.to(el, {
+            y: -8,
+            scale: 1.02,
+            duration: 0.35,
+            ease: "power2.out",
+            boxShadow: "0 15px 30px rgba(0,0,0,0.1)"
+          });
+        });
+
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el, {
+            y: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: "power2.out",
+            boxShadow: "rgba(0,0,0,0) 0px 0px 0px",
+            clearProps: "boxShadow,transform"
+          });
+        });
+      });
+    });
   </script>
 </body>
 
