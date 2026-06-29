@@ -1,8 +1,8 @@
-# Solar Vex — Premium Interactive 3D Web Application
+# Nova Sphere — Premium Interactive 3D Web Application
 
 An elite, gallery-style creative frontend platform overhauling static promotional energy layouts into a high-performance, state-driven 3D application. Built using vanilla structural assets, advanced GreenSock Animation Platform (GSAP) timelines, and hardware-accelerated WebGL layers via Three.js.
 
-👉 **Live Repository:** [https://github.com/zehantalukder28-gif/SolarVex-3D-Webapp](https://github.com/zehantalukder28-gif/SolarVex-3D-Webapp)
+👉 **Live Repository:** [https://github.com/zehantalukder28-gif/NovaSphere-3D-Webapp](https://github.com/zehantalukder28-gif/NovaSphere-3D-Webapp)
 
 ---
 
